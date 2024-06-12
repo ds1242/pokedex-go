@@ -64,12 +64,7 @@ func commandHelp() error {
 	fmt.Println("help: Displays this help message")
 	fmt.Println("exit: Exit the Pokedex")
 	fmt.Println("")
-	
+
 	return nil
 }
 
-func commandExit() error {
-	fmt.Println("Goodbye!")
-	os.Exit(0)
-	return nil
-}
