@@ -34,7 +34,10 @@ func startRepl() {
 			}
 			continue
 		} else {
+			fmt.Println()
 			fmt.Println("Unknown command")
+			fmt.Println("enter help to see a list of available commands")
+			fmt.Println()
 			continue
 		}
 	}
