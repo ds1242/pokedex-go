@@ -27,14 +27,18 @@ func main() {
 			callback: commandExit,
 		},
 	}
-	// fmt.Println(commands)
 	for {
 		userInput := userPrompt("Pokedex >")
+		
 		if userInput == commands[userInput].name {
 			commands[userInput].callback()
-		} else {
+		} 
+
+		if userInput != commands[userInput].name {
+			fmt.Println("")
 			fmt.Println("Invalid Command. Please Try Again")
 			fmt.Println("To see available options, enter help")
+			fmt.Println("")
 		}
 	}
 }
@@ -53,10 +57,14 @@ func userPrompt(label string) string {
 }
 
 func commandHelp() error {
+	fmt.Println("")
 	fmt.Println("Welcome to the Pokedex!")
 	fmt.Println("Commands Available:")
+	fmt.Println("")
 	fmt.Println("help: Displays this help message")
 	fmt.Println("exit: Exit the Pokedex")
+	fmt.Println("")
+	
 	return nil
 }
 
