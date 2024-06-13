@@ -1,4 +1,4 @@
-package main
+package pokemap
 
 import (
 	"fmt"
@@ -8,7 +8,8 @@ import (
 )
 
 
-func commandMap() error {
+
+func CommandMap() error {
 	res, err := http.Get("https://pokeapi.co/api/v2/location")
 	if err != nil {
 		log.Fatal(err)

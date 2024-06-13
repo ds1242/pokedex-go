@@ -1,7 +1,8 @@
-package main
+package pokemap
+
 import "fmt"
 
-func commandMapB() error {
+func CommandMapB() error {
 	fmt.Println("mapb")
 	return nil
 }

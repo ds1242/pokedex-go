@@ -1,32 +1,34 @@
-package main
+package pokemap
 
 import (
 	"bufio"
 	"fmt"
 	"os"
 	"strings"
+	"github.com/ds1242/pokedex-go/config"
 )
 
-type cliCommand struct {
+type CliCommand struct {
 	name string
 	description string
 	callback func() error
 }
 
-func startRepl() {
+func StartRepl(conf *config.Config) {
+
 	reader := bufio.NewScanner(os.Stdin)
 	for {
 		fmt.Println("Pokedex > ")
 		reader.Scan()
 
-		words := cleanInput(reader.Text())
+		words := CleanInput(reader.Text())
 		if len(words) == 0 {
 			continue
 		}
 
 		commandName := words[0]
 
-		command, exists := getCommands()[commandName]
+		command, exists := GetCommands()[commandName]
 		if exists {
 			err := command.callback()
 			if err != nil {
@@ -43,14 +45,14 @@ func startRepl() {
 	}
 }
 
-func cleanInput(text string) []string {
+func CleanInput(text string) []string {
 	output := strings.ToLower(text)
 	words := strings.Fields(output)
 	return words
 }
 
-func getCommands() map[string]cliCommand {
-	return map[string]cliCommand{		
+func GetCommands() map[string]CliCommand {
+	return map[string]CliCommand{		
 		"help": {
 			name: "help",
 			description: "Displays a help message",
@@ -64,12 +66,12 @@ func getCommands() map[string]cliCommand {
 		"map": {
 			name:"map",
 			description: "Displays the name of 20 locations in the Pokemon world",
-			callback: commandMap,
+			callback: CommandMap,
 		},
 		"mapb": {
 			name:"mapb",
 			description: "Displays the previous 20 locations queried in map",
-			callback: commandMapB,
+			callback: CommandMapB,
 		},
 		
 	}
