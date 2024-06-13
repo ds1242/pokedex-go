@@ -1,14 +1,18 @@
 package pokemap
 
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/ds1242/pokedex-go/config"
+)
 
 
-func commandHelp() error {
+func commandHelp(conf *config.Config) error {
 	fmt.Println()
 	fmt.Println("Welcome to the Pokedex!")
 	fmt.Println("Commands Available:")
 	fmt.Println()
-	for _, cmd := range GetCommands() {
+	for _, cmd := range GetCommands(conf) {
 		fmt.Printf("%s: %s\n", cmd.name, cmd.description)
 	}
 	fmt.Println()

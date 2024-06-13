@@ -1,8 +1,11 @@
 package pokemap
 
-import "fmt"
+import (
+	"fmt"
+	"github.com/ds1242/pokedex-go/config"
+)
 
-func CommandMapB() error {
+func commandMapB(conf *config.Config) error{
 	fmt.Println("mapb")
 	return nil
 }
