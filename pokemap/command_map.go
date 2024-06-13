@@ -1,17 +1,13 @@
 package pokemap
 
 import (
-	"fmt"
-	// "io"
-	// "log"
-	// "net/http"
+	// "fmt"
 	"github.com/ds1242/pokedex-go/config"
 )
 
 
 
-func commandMap(conf *config.Config) error{
-	fmt.Println("Get Location Fires")
+func commandMap(conf *config.Config) error {
 	GetLocation(conf)
 	return nil
 }

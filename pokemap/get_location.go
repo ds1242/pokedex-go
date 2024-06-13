@@ -22,5 +22,6 @@ func GetLocation(conf *config.Config) error {
 		log.Fatal(err)
 	}
 	fmt.Printf("%s", body)
+	
 	return nil
 }
