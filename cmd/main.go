@@ -7,7 +7,7 @@ import (
 
 func main() {	
 	conf := &config.Config{
-		NextURL: "https://pokeapi.co/api/v2/location-area/",
+		NextURL: "https://pokeapi.co/api/v2/location",
 	}
 	pokemap.StartRepl(conf)
 }
