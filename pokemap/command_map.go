@@ -8,6 +8,7 @@ import (
 
 
 func commandMap(conf *config.Config) error {
-	GetLocation(conf)
+	
+	GetLocation(conf.NextURL, conf)
 	return nil
 }

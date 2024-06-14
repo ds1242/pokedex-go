@@ -13,15 +13,15 @@ import (
 type LocationData struct {
 	Count    int    `json:"count"`
 	Next     string `json:"next"`
-	Previous *string    `json:"previous"`
+	Previous string    `json:"previous"`
 	Results  []struct {
 		Name string `json:"name"`
 		URL  string `json:"url"`
 	} `json:"results"`
 }
 
-func GetLocation(conf *config.Config) error {
-	res, err := http.Get(conf.NextURL)
+func GetLocation(url string, conf *config.Config) error {
+	res, err := http.Get(url)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -40,18 +40,13 @@ func GetLocation(conf *config.Config) error {
 	if decodErr != nil {
 		fmt.Println(decodErr)
 	}
-	// fmt.Println(locationData)
-	fmt.Println(locationData.Next)
 	conf.NextURL = locationData.Next
-	conf.PreviousURL = locationData.Next
-	fmt.Println(conf)
+	conf.PreviousURL = locationData.Previous
+	fmt.Println(conf.PreviousURL)
 
 	for _, location := range locationData.Results {
 		fmt.Println(location.Name)
 	}
-	// fmt.Printf("%s", locationData.Results)
-	
-	// fmt.Printf("%s", body)
 	
 	return nil
 }

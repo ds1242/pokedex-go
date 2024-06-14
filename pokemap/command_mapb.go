@@ -1,11 +1,14 @@
 package pokemap
 
 import (
-	"fmt"
+	"errors"
 	"github.com/ds1242/pokedex-go/config"
 )
 
 func commandMapB(conf *config.Config) error{
-	fmt.Println("mapb")
+	if conf.PreviousURL == "" {
+		return errors.New("no more previous data to query, please use map to check forward")
+	}
+	GetLocation(conf.PreviousURL, conf)
 	return nil
 }
