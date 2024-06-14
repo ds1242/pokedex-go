@@ -61,7 +61,7 @@ func GetCommands(conf *config.Config) map[string]CliCommand {
 		"exit": {
 			name: "exit",
 			description: "Exit the Pokedex",
-			callback: func(conf *config.Config) error { return commandExit(conf) },
+			callback: func(conf *config.Config) error { return commandExit() },
 		},
 		"map": {
 			name:"map",
