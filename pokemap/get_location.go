@@ -6,19 +6,9 @@ import (
 	"io"
 	"log"
 	"net/http"
-
 	"github.com/ds1242/pokedex-go/config"
 )
 
-type LocationData struct {
-	Count    int    `json:"count"`
-	Next     string `json:"next"`
-	Previous string    `json:"previous"`
-	Results  []struct {
-		Name string `json:"name"`
-		URL  string `json:"url"`
-	} `json:"results"`
-}
 
 func GetLocation(url string, conf *config.Config) error {
 	res, err := http.Get(url)
