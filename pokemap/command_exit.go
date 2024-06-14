@@ -1,4 +1,4 @@
-package main
+package pokemap
 
 import (
 	"os"
@@ -6,7 +6,9 @@ import (
 )
 
 func commandExit() error {
+	fmt.Println()
 	fmt.Println("Goodbye!")
+	fmt.Println()
 	os.Exit(0)
 	return nil
 }
