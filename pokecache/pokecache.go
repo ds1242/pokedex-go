@@ -46,3 +46,20 @@ func (cache *Cache) Get(key string) ([]byte, bool) {
 	
 	return val.val, true
 }
+
+
+func (cache *Cache) reapLoop() {
+	ticker := time.NewTicker(cache.interval)
+	done := make(chan bool)
+
+	go func() {
+		for {
+			select {
+			case <-done:
+				
+			}
+		}
+	}
+	cache.mu.Lock()
+	defer cache.mu.Unlock()
+}
