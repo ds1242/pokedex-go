@@ -15,3 +15,17 @@ type Cache struct {
 	mutex    sync.Mutex
 	interval time.Duration
 }
+
+func NewCache(interval time.Duration) *Cache {
+	cache := &Cache {
+		data: make(map[string]cacheEntry),
+		interval: interval,
+	}
+	go cache.reapLoop()
+	return cache
+}
+
+
+func (cache *Cache) Add(key string, val []byte) {
+	
+}
