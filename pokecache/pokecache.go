@@ -12,7 +12,7 @@ type cacheEntry struct {
 
 type Cache struct {
 	data     map[string]cacheEntry
-	mutex    sync.Mutex
+	mu    sync.Mutex
 	interval time.Duration
 }
 
@@ -27,5 +27,11 @@ func NewCache(interval time.Duration) *Cache {
 
 
 func (cache *Cache) Add(key string, val []byte) {
-	
+	cache.mu.Lock()
+	entry := cacheEntry{
+		createdAt: time.Now(),
+		val: val,
+	}
+	cache.data[key] = entry
+	cache.mu.Unlock()
 }
