@@ -35,3 +35,12 @@ func (cache *Cache) Add(key string, val []byte) {
 	cache.data[key] = entry
 	cache.mu.Unlock()
 }
+
+func (cache *Cache) Get(key string) ([]byte, bool) {
+	cache.mu.Lock()
+	if cache.data[key] != nil {
+		return cache.data[key].val, true
+	}
+	cache.mu.Unlock()
+	return nil, false
+}
