@@ -48,3 +48,44 @@ func (c *Client) ListLocations(pageURL *string) (RespShallowLocations, error) {
 	c.cache.Add(url, dat)
 	return locationsResp, nil
 }
+
+
+
+func (c *Client) GetLocationAreas(locationAreaName string) (LocationArea, error) {
+	url := baseURL + "/location-area/" + locationAreaName
+
+	if val, ok := c.cache.Get(url); ok {
+		locationsArea := LocationArea{}
+		err := json.Unmarshal(val, &locationsArea)
+		if err != nil {
+			return LocationArea{}, err
+		}
+
+		return locationsArea, nil
+	}
+
+	req, err := http.NewRequest("GET", url, nil)
+	if err != nil {
+		return LocationArea{}, err
+	}
+
+	resp, err := c.httpClient.Do(req)
+	if err != nil {
+		return LocationArea{}, err
+	}
+	defer resp.Body.Close()
+
+	dat, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return LocationArea{}, err
+	}
+
+	locationArea := LocationArea{}
+	err = json.Unmarshal(dat, &locationArea)
+	if err != nil {
+		return LocationArea{}, err
+	}
+
+	c.cache.Add(url, dat)
+	return locationArea, nil
+}
