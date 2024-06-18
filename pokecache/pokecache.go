@@ -49,17 +49,14 @@ func (cache *Cache) Get(key string) ([]byte, bool) {
 
 
 func (cache *Cache) reapLoop() {
-	ticker := time.NewTicker(cache.interval)
-	done := make(chan bool)
-
-	go func() {
-		for {
-			select {
-			case <-done:
-				
+	ticker := time.NewTicker(cache.interval)	
+	for range ticker.C {
+		cache.mu.Lock()
+		for key, val  := range cache.data {
+			if time.Since(val.createdAt) > cache.interval {
+				delete(cache.data, key)
 			}
 		}
+		cache.mu.Unlock()
 	}
-	cache.mu.Lock()
-	defer cache.mu.Unlock()
 }
