@@ -1,6 +1,8 @@
-package pokemap
+package main
 
-import "testing"
+import (
+	"testing"
+)
 
 func TestCleanInput(t *testing.T) {
 	cases := []struct {
@@ -24,8 +26,9 @@ func TestCleanInput(t *testing.T) {
 			expected: []string{"hello", "world"},
 		},
 	}
+
 	for _, c := range cases {
-		actual := CleanInput(c.input)
+		actual := cleanInput(c.input)
 		if len(actual) != len(c.expected) {
 			t.Errorf("lengths don't match: '%v' vs '%v'", actual, c.expected)
 			continue
