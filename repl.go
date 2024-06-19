@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"os"
 	"strings"
-
 	"github.com/ds1242/pokedex-go/internal/pokeapi"
 )
 
@@ -84,6 +83,11 @@ func getCommands() map[string]cliCommand {
 			name:		 "explore {location_area}",
 			description: "See Pokemon available in a certain area",
 			callback: 	 commandExplore,
+		},
+		"catch": {
+			name: 		 "catch {pokemon name}",
+			description: "Try to catch a pokemon",
+			callback: 	  commandCatch,
 		},
 	}
 }
